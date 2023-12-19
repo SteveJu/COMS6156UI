@@ -104,7 +104,7 @@
             console.log(idToken);
             console.log("After getCognitoIdentityCredentials");
             console.log(user_id);
-            alert("You have successfully logged in!");
+            window.location.href = "dashboard-owner.html";
           },
 
           onFailure: function (err) {
