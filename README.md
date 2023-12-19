@@ -141,11 +141,11 @@
           "200":
             description: "200 response"
   ```
-- **Lambda Integration**:
-  <img width="975" alt="Screenshot 2023-12-16 at 8 57 38 PM" src="https://github.com/SteveJu/COMS6156UI/assets/98562104/caa9e008-5bb0-4b93-b9e6-ee738e5375d0">
 
 ## Auth-Middleware
-AWS Cognito (to-do)
+(This project enables user registration and login through AWS Cognito user pools. It includes JavaScript middleware for straightforward integration with the AWS Cognito SDK package)
+- **User Registration**: New users can register, complete with email verification (SSO provider: AWS Cognito).
+- **User Login**:Existing users can securely log in using AWS Cognito.
 
 ## S3 Front-end Static Website
 - **URL**: http://6156-frontend.s3-website-us-east-1.amazonaws.com
