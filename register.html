@@ -298,6 +298,11 @@ Essential Scripts
             if (err) {
                 console.log("Signup failed, error: ");
                 console.log(err.message);
+                if (err.code === 'UsernameExistsException') {
+                    alert("An account with this email already exists. Redirecting to login.");
+                    window.location.href = 'login.html';
+                }
+
             } else {
                 cognitoUser = result.user;
                 console.log('Registration Successful!');
