@@ -536,7 +536,7 @@ Essential Scripts
 				alert("Lambda returns: " + resultText); // Include your result text here
 			} else {
 				// If the request fails, display an error message
-				alert("Internal Server Error :(");
+				alert("Internal Server Error :");
 			}
 		} catch (error) {
 			console.log("error", error);
@@ -548,11 +548,11 @@ Essential Scripts
 	async function createPet(petName, petBreed, petBirthday, petLocation, petCategory) {
 		const url = "https://b8gke3dl56.execute-api.us-east-1.amazonaws.com/test/create";
 		const data = {
-			name: petName,
-			breed: petBreed,
+			name: petName, //chuan
+			breed: petBreed, //chuan
 			birthday: petBirthday,
 			location: petLocation,
-			category: petCategory,
+			category: petCategory,//Chuan
 			status: 'Not Adopted'
 		};
 
@@ -638,6 +638,7 @@ Essential Scripts
 			}
 		} catch (error) {
 			console.log("error", error);
+			alert(error);
 		}
 
 		console.log("Search Request Sent");
