@@ -648,7 +648,7 @@ Essential Scripts
 		// GetAllPet();
 		// createPet();
 		// deletePetById(123);
-		// UpdatePetName("Samantha");
+		UpdatePetName("Samantha");
 	};
 
 
@@ -669,7 +669,7 @@ Essential Scripts
 					let newPetName = document.getElementById('newPetName').value;
 					if (newPetName) {
 						try {
-							await UpdatePetName(newPetName);
+							UpdatePetName(newPetName);
 							petNameElement.textContent = newPetName;
 						} catch (error) {
 							console.error("Failed to update pet name: ", error);
