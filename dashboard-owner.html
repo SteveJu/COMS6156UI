@@ -546,20 +546,22 @@ Essential Scripts
 	}
 
 	async function createPet(petName, petBreed, petBirthday, petLocation, petCategory) {
-		const url = "https://b8gke3dl56.execute-api.us-east-1.amazonaws.com/test/create";
-		const data = {
-			name: petName, //chuan
-			breed: petBreed, //chuan
-			birthday: petBirthday,
-			location: petLocation,
-			category: petCategory,//Chuan
-			status: 'Not Adopted'
-		};
+
+		const url = `https://b8gke3dl56.execute-api.us-east-1.amazonaws.com/test/create?petName=${petName}&petBreed=${petBreed}&petCategory=${petCategory}`;
+
+		// const data = {
+		// 	name: petName, //chuan
+		// 	breed: petBreed, //chuan
+		// 	birthday: petBirthday,
+		// 	location: petLocation,
+		// 	category: petCategory,//Chuan
+		// 	status: 'Not Adopted'
+		// };
 
 		const requestOptions = {
 			method: "POST",
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(data)
+			// headers: { 'Content-Type': 'application/json' },
+			// body: JSON.stringify(data)
 		};
 
 		try {
