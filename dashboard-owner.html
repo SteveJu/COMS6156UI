@@ -609,9 +609,9 @@ Essential Scripts
 		console.log("Search Request Sent");
 	}
 
-	async function UpdatePetName(newname) {
+	async function UpdatePetName(newname,id) {
 		//PUT request
-		const url = `https://b8gke3dl56.execute-api.us-east-1.amazonaws.com/test/updatepetname?newname=${newname}`;
+		const url = `https://b8gke3dl56.execute-api.us-east-1.amazonaws.com/test/updatepetname?newname=${newname}&id=${id}`;
 
 		const requestOptions = {
 			method: "PUT",
@@ -738,7 +738,7 @@ Essential Scripts
 					let newPetName = document.getElementById('newPetName').value;
 					if (newPetName) {
 						try {
-							UpdatePetName(newPetName);
+							UpdatePetName(newPetName, petId);
 							petNameElement.textContent = newPetName;
 						} catch (error) {
 							console.error("Failed to update pet name: ", error);
