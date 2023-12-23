@@ -537,6 +537,8 @@ Essential Scripts
 				// If the request is successful, display the result in an alert
 				// alert("Lambda returns: " + resultText); // Include your result text here
 				displayPets(resultText);
+				paginatePets();
+				showCurrentPage();
 			} else {
 				// If the request fails, display an error message
 				alert("Internal Server Error :(");
@@ -645,10 +647,31 @@ Essential Scripts
 	};
 
 	function displayPets(jsonString) {
-		const pets = JSON.parse(jsonString);
 		const tableBody = document.querySelector('.product-dashboard-table tbody');
 		tableBody.innerHTML = '';
-		alert(pets);
+		function manuallyParseJSON(jsonString) {
+			const objects = [];
+			const entries = jsonString.slice(2, -2).split("},{");
+
+			entries.forEach(entry => {
+				const obj = {};
+				const pairs = entry.split(',');
+
+				pairs.forEach(pair => {
+					const [key, value] = pair.split(':');
+					const cleanKey = key.replace(/[\{\}\"\\]/g, '').trim();
+					const cleanValue = value.replace(/[\{\}\"\\]/g, '').trim();
+
+					obj[cleanKey] = isNaN(cleanValue) ? cleanValue : Number(cleanValue);
+				});
+
+				objects.push(obj);
+			});
+
+			return objects;
+		}
+		const pets = manuallyParseJSON(jsonString);
+
 		for (const pet of pets) {
 			const row = document.createElement('tr');
 
