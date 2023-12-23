@@ -304,6 +304,7 @@
 							</tr>
 						</thead>
 						<tbody>
+						<!--
 							<tr>
 								<td class="product-thumb">
 									<img width="80px" height="auto" src="images/products/dog1.jpeg" alt="image description"></td>
@@ -439,6 +440,7 @@
 									</div>
 								</td>
 							</tr>
+							-->
 						</tbody>
 					</table>
 
@@ -533,10 +535,11 @@ Essential Scripts
 
 			if (response.ok) {
 				// If the request is successful, display the result in an alert
-				alert("Lambda returns: " + resultText); // Include your result text here
+				// alert("Lambda returns: " + resultText); // Include your result text here
+				displayPets(resultText);
 			} else {
 				// If the request fails, display an error message
-				alert("Internal Server Error :");
+				alert("Internal Server Error :(");
 			}
 		} catch (error) {
 			console.log("error", error);
@@ -549,19 +552,8 @@ Essential Scripts
 
 		const url = `https://b8gke3dl56.execute-api.us-east-1.amazonaws.com/test/create?petName=${petName}&petBreed=${petBreed}&petCategory=${petCategory}`;
 
-		// const data = {
-		// 	name: petName, //chuan
-		// 	breed: petBreed, //chuan
-		// 	birthday: petBirthday,
-		// 	location: petLocation,
-		// 	category: petCategory,//Chuan
-		// 	status: 'Not Adopted'
-		// };
-
 		const requestOptions = {
 			method: "POST",
-			// headers: { 'Content-Type': 'application/json' },
-			// body: JSON.stringify(data)
 		};
 
 		try {
@@ -649,8 +641,61 @@ Essential Scripts
 		// GetAllPet();
 		// createPet();
 		// deletePetById(123);
-		UpdatePetName("Samantha");
+		// UpdatePetName("Samantha");
 	};
+
+	function displayPets(jsonString) {
+		const pets = JSON.parse(jsonString);
+		const tableBody = document.querySelector('.product-dashboard-table tbody');
+		tableBody.innerHTML = '';
+		alert(pets);
+		for (const pet of pets) {
+			const row = document.createElement('tr');
+
+			const picture = pet.Picture || 'default-image-url.jpg'; // Replace with your default image URL
+			const name = pet.Name || 'N/A';
+			const breeds = pet.Breeds || 'Unknown';
+			const age = pet.Age || 'Unknown';
+			const conditions = pet.Conditions || 'Not Adopted';
+			const owner = pet.Owner || 'Unknown';
+			const category = pet.Category || 'Unknown';
+			const petID = pet.PetID || '';
+
+			row.innerHTML = `
+            <td class="product-thumb">
+
+                <img width="80px" height="auto" src="images/products/default.jpeg" alt="Image not available">
+                <!-- <img width="80px" height="auto" src="${picture}" alt="Image not available"> -->
+            </td>
+            <td class="product-details">
+                <h3 class="title">${name}</h3>
+                <span class="add-id"><strong>Breed:</strong> ${breeds}</span>
+                <span><strong>Age:</strong> ${age}</span>
+                <span class="status active"><strong>Condition:</strong> ${conditions}</span>
+                <span class="location"><strong>Owner:</strong> ${owner}</span>
+            </td>
+            <td class="product-category"><span class="categories">${category}</span></td>
+            <td class="action" data-title="Action">
+                <ul class="list-inline justify-content-center">
+                    <li class="list-inline-item">
+                        <a data-toggle="tooltip" data-placement="top" title="Edit" class="edit" href="#" data-pet-id="${petID}">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a data-toggle="tooltip" data-placement="top" title="Delete" class="delete" href="#" data-pet-id="${petID}">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </li>
+                </ul>
+            </td>
+        `;
+
+			tableBody.appendChild(row);
+		}
+	}
+
+
 
 
 	document.addEventListener('DOMContentLoaded', function () {
@@ -842,6 +887,7 @@ Essential Scripts
 	}
 
 	document.addEventListener('DOMContentLoaded', function() {
+		GetAllPet();
 		paginatePets();
 		showCurrentPage();
 	});
